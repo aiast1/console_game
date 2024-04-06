@@ -71,6 +71,7 @@ int main() {
             game[plx][ply] = pla;
             render(game, pla);
             //std::cout << "Press\n";
+            footstep();
             pressed = false;
         }
         Sleep(30);
@@ -91,3 +92,6 @@ int main() {
     SetCursorVisibility(true);
     return 0;
 }
+
+
+
