@@ -44,22 +44,28 @@ int main() {
     //##################################################################################
     //##################################################################################
     while (true) {
-        if (GetAsyncKeyState('W') & 0x8000) {
+        char up    =   game[plx][ply - 1];
+        char down  =   game[plx][ply + 1];
+        char left  =   game[plx - 1][ply];
+        char right =   game[plx + 1][ply];
+
+
+        if ((GetAsyncKeyState('W') & 0x8000) && (up != '^')) {
             game[plx][ply] = pastchar;
             ply = max(ply - 1, 1);
             pressed = true;
         }
-        if (GetAsyncKeyState('S') & 0x8000) {
+        if ((GetAsyncKeyState('S') & 0x8000) && (down != '^')) {
             game[plx][ply] = pastchar;
             ply = min(ply + 1, mapy - 2); 
             pressed = true;
         }
-        if (GetAsyncKeyState('A') & 0x8000) {
+        if ((GetAsyncKeyState('A') & 0x8000) && (left != '^')) {
             game[plx][ply] = pastchar;
             plx = max(plx - 1, 1); 
             pressed = true;
         }
-        if (GetAsyncKeyState('D') & 0x8000) {
+        if ((GetAsyncKeyState('D') & 0x8000) && (right != '^')) {
             game[plx][ply] = pastchar;
             plx = min(plx + 1, mapx - 2);
             pressed = true;
