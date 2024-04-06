@@ -27,6 +27,13 @@ void render(const std::array<std::array<char, mapy>, mapx>& game, char pla) {
                 std::cout << game[x][y];
                 SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
                 break;
+
+            case '.':
+                SetConsoleTextAttribute(consoleHandle, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+                std::cout << game[x][y];
+                SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+                break;
+
             default:
                 std::cout << game[x][y];
                 break;
