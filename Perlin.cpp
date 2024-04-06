@@ -8,7 +8,6 @@
 class PerlinNoise {
 public:
     PerlinNoise() {
-        // Initialize the permutation vector with the reference values
         p = {
             151,160,137,91,90,15,
             131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,
@@ -37,28 +36,23 @@ public:
             61,156,180
         };
 
-        // Duplicate the permutation vector
         p.insert(p.end(), p.begin(), p.end());
     }
 
-    // Generate Perlin noise for a point
     double noise(double x, double y, double z) {
-        // Find the unit cube that contains the point
         int X = (int)floor(x) & 255;
         int Y = (int)floor(y) & 255;
         int Z = (int)floor(z) & 255;
 
-        // Find relative x, y, z of point in cube
         x -= floor(x);
         y -= floor(y);
         z -= floor(z);
 
-        // Compute fade curves for each of x, y, z
         double u = fade(x);
         double v = fade(y);
         double w = fade(z);
 
-        // Hash coordinates of the 8 cube corners
+
         int A = p[X] + Y;
         int AA = p[A] + Z;
         int AB = p[A + 1] + Z;
@@ -66,7 +60,6 @@ public:
         int BA = p[B] + Z;
         int BB = p[B + 1] + Z;
 
-        // Add blended results from 8 corners of cube
         double res = lerp(w, lerp(v, lerp(u, grad(p[AA], x, y, z),
             grad(p[BA], x - 1, y, z)),
             lerp(u, grad(p[AB], x, y - 1, z),
@@ -75,25 +68,24 @@ public:
                 grad(p[BA + 1], x - 1, y, z - 1)),
                 lerp(u, grad(p[AB + 1], x, y - 1, z - 1),
                     grad(p[BB + 1], x - 1, y - 1, z - 1))));
-        return (res + 1.0) / 2.0; // Map the result to [0, 1]
+        return (res + 1.0) / 2.0; 
     }
 
 private:
-    std::vector<int> p; // Permutation vector
+    std::vector<int> p; 
 
     double fade(double t) {
-        // Fade function as defined by Ken Perlin
-        // 6t^5 - 15t^4 + 10t^3
+        
         return t * t * t * (t * (t * 6 - 15) + 10);
     }
 
     double lerp(double t, double a, double b) {
-        // Linear interpolation
+        
         return a + t * (b - a);
     }
 
     double grad(int hash, double x, double y, double z) {
-        // Convert lo 4 bits of hash code into 12 gradient directions
+        
         int h = hash & 15;
         double u = h < 8 ? x : y;
         double v = h < 4 ? y : h == 12 || h == 14 ? x : z;
@@ -120,7 +112,7 @@ char perlin_noise_func(std::array<std::array<char, mapy>, mapx>& game) {
         for (int x = 0; x < mapx; x++) {
             double noiseValue = perlin.noise(x * scale, y * scale, 0.0);
             perl_map[y][x] = noiseValue;
-            // Interpret and display noise value as before
+            
             if (noiseValue < 0.3) {
                 game[x][y] = '~'; // Water
             }
