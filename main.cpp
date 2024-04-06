@@ -34,6 +34,7 @@ int main() {
     //    }
     //}
 
+    char pastchar = game[plx][ply];
     game[plx][ply] = pla;
     render(game, pla);
     //##################################################################################
@@ -44,33 +45,32 @@ int main() {
     //##################################################################################
     while (true) {
         if (GetAsyncKeyState('W') & 0x8000) {
-            game[plx][ply] = '#';
+            game[plx][ply] = pastchar;
             ply = max(ply - 1, 1);
             pressed = true;
         }
         if (GetAsyncKeyState('S') & 0x8000) {
-            game[plx][ply] = '#';
+            game[plx][ply] = pastchar;
             ply = min(ply + 1, mapy - 2); 
             pressed = true;
         }
         if (GetAsyncKeyState('A') & 0x8000) {
-            game[plx][ply] = '#';
+            game[plx][ply] = pastchar;
             plx = max(plx - 1, 1); 
             pressed = true;
         }
         if (GetAsyncKeyState('D') & 0x8000) {
-            game[plx][ply] = '#';
+            game[plx][ply] = pastchar;
             plx = min(plx + 1, mapx - 2);
-            //plx = min(plx + 1, mapx - 1);
             pressed = true;
         }
         if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
             break; 
         }
         if (pressed) {
+            pastchar = game[plx][ply]; //fix
             game[plx][ply] = pla;
             render(game, pla);
-            //std::cout << "Press\n";
             footstep();
             pressed = false;
         }
