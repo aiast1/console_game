@@ -44,11 +44,12 @@ int main() {
     //##################################################################################
     //##################################################################################
     while (true) {
+        #pragma warning(disable : 28020)
         char up    =   game[plx][ply - 1];
         char down  =   game[plx][ply + 1];
         char left  =   game[plx - 1][ply];
         char right =   game[plx + 1][ply];
-
+        #pragma warning(default : 28020)
 
         if ((GetAsyncKeyState('W') & 0x8000) && (up != '^')) {
             game[plx][ply] = pastchar;
