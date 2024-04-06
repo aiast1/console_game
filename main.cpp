@@ -28,11 +28,6 @@ int main() {
     std::array<std::array<char, mapy>, mapx> game;
 
     perlin_noise_func(game);
-    //for (int y = 0; y < mapy; ++y) {
-    //    for (int x = 0; x < mapx; ++x) {
-    //        game[x][y] = '#';
-    //    }
-    //}
 
     char pastchar = game[plx][ply];
     game[plx][ply] = pla;
@@ -89,8 +84,9 @@ int main() {
     //##################################################################################
     std::ofstream outFile("STATE.txt");
     if (outFile.is_open()) {
-        outFile << plx;
-        outFile << ply;
+        outFile << plx << std::endl;
+        outFile << ply << std::endl;
+        outFile << pla;
         outFile.close();
     }
     else { std::cout << "Unable to open file." << std::endl; }
