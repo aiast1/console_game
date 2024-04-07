@@ -133,6 +133,7 @@
     <ClCompile Include="Perlin.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Sounds.cpp" />
+    <ClCompile Include="ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Declare.h" />

@@ -22,3 +22,7 @@ void render(const std::array<std::array<char, mapy>, mapx>& game, char pla);
 
 //sound
 void footstep();
+
+
+//ui
+int start_ui();
