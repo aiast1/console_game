@@ -42,6 +42,7 @@ void displayMenu(int highlight) {
 }
 
 int start_ui() {
+    background_music();
     int selectedItem = START_GAME;
     displayMenu(selectedItem);
 
