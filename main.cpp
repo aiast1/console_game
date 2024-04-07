@@ -48,7 +48,7 @@ int main() {
 
     char pastchar = game[plx][ply];
     game[plx][ply] = pla;
-    render(game, pla);      
+    render(game, plx, ply, pla);      
     //##################################################################################
     
 
@@ -91,7 +91,7 @@ int main() {
         if (pressed) {
             pastchar = game[plx][ply]; //fix
             game[plx][ply] = pla;
-            render(game, pla);
+            render(game, plx, ply, pla);
             footstep();
             pressed = false;
         }

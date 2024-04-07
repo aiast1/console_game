@@ -7,8 +7,8 @@
 #include <array>
 #include <fstream>
 
-const int mapx = 180;//40
-const int mapy = 45;//25
+const int mapx = 500;//40
+const int mapy = 500;//25
 
 //user expirience
 void SetCursorVisibility(bool visible);
@@ -18,7 +18,7 @@ char perlin_noise_func(std::array<std::array<char, mapy>, mapx>& game);
 
 //render
 void SetCursorPosition(int x, int y);
-void render(const std::array<std::array<char, mapy>, mapx>& game, char pla);
+void render(const std::array<std::array<char, mapy>, mapx>& game, int plx, int ply, char pla);
 
 //sound
 void footstep();
