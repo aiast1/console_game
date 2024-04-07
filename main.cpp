@@ -3,8 +3,15 @@
 
 
 int main() {
+
+    //################console fullscreen and renamed#######################################
+
+    
+    
     SetCursorVisibility(false);
     SetConsoleTitle(TEXT("simple game"));//rename window
+
+    
 
     //#############################load state###########################################
     //##################################################################################

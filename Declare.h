@@ -7,8 +7,8 @@
 #include <array>
 #include <fstream>
 
-const int mapx = 40;
-const int mapy = 25;
+const int mapx = 180;//40
+const int mapy = 45;//25
 
 //user expirience
 void SetCursorVisibility(bool visible);
