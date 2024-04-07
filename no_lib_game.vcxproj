@@ -142,6 +142,7 @@
     <Text Include="STATE.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="background_music.wav" />
     <Media Include="footstep.wav" />
   </ItemGroup>
   <ItemGroup>

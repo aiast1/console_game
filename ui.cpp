@@ -2,7 +2,7 @@
 
 using namespace std;
 
-enum OPTIONS { START_GAME, HELP, QUIT_GAME };
+enum OPTIONS { START_GAME, CONTROLS, QUIT_GAME };
 
 
 
@@ -28,8 +28,8 @@ void displayMenu(int highlight) {
         if (i == START_GAME) {
             cout << "Start Game";
         }
-        else if (i == HELP) {
-            cout << "Help";
+        else if (i == CONTROLS) {
+            cout << "Controls";
         }
         else if (i == QUIT_GAME) {
             cout << "Quit Game";
@@ -69,18 +69,21 @@ int start_ui() {
         if (GetAsyncKeyState(VK_RETURN) & 0x8000) {
             
             if (selectedItem == START_GAME) {
-                // 
-                cout << "\nStarting game...";
+                //
+                system("cls");
                 break;
             }
-            else if (selectedItem == HELP) {
-                // 
-                cout << "\nShowing help...";
+
+            else if (selectedItem == CONTROLS) {
+                system("cls");
+                cout << "simple game";
+                std::cin.get();
                 break;
             }
+
             else if (selectedItem == QUIT_GAME) {
+                system("cls");
                 exit(0);
-                cout << "\nQuitting game...";
                 break;
             }
             Sleep(150); // Delay preventing multiple selections

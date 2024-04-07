@@ -48,6 +48,9 @@
     <Media Include="footstep.wav">
       <Filter>Resource Files</Filter>
     </Media>
+    <Media Include="background_music.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md">
