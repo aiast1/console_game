@@ -18,13 +18,12 @@ int main() {
     bool pressed = false;
     int ply = 0;
     int plx = 0;
-    char pla = 'o';
+    char pla = '>';
     std::ifstream inputFile("STATE.txt");
 
     if (inputFile.is_open()) {
         inputFile >> plx; 
         inputFile >> ply;
-        inputFile >> pla;
         inputFile.close(); 
     }
     else {std::cout << "Unable to open file." << std::endl;}
@@ -84,12 +83,29 @@ int main() {
             plx = min(plx + 1, mapx - 2);
             pressed = true;
         }
+        //###
+        if (GetAsyncKeyState('I') & 0x8000) {
+            pla = '^';
+            pressed = true;
+        }
+        if (GetAsyncKeyState('K') & 0x8000) {
+            pla = 'v';
+            pressed = true;
+        }
+        if (GetAsyncKeyState('J') & 0x8000) {
+            pla = '<';
+            pressed = true;
+        }
+        if (GetAsyncKeyState('L') & 0x8000) {
+            pla = '>';
+            pressed = true;
+        }
+        //###
         if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
             exit(0);
             break; 
         }
         if (pressed) {
-            pastchar = game[plx][ply]; //fix
             game[plx][ply] = pla;
             render(game, plx, ply, pla);
             footstep();
@@ -105,7 +121,6 @@ int main() {
     if (outFile.is_open()) {
         outFile << plx << std::endl;
         outFile << ply << std::endl;
-        outFile << pla;
         outFile.close();
     }
     else { std::cout << "Unable to open file." << std::endl; }
