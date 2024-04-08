@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <array>
 #include <fstream>
+#include <cmath>
 
 const int mapx = 500;//40
 const int mapy = 500;//25

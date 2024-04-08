@@ -2,11 +2,30 @@
 #include <thread> 
 
 
+const double PI = 3.14159265;
+
+
+enum ArrowDirection {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+};
+
+ArrowDirection calculateArrowDirection(int mouseX, int mouseY, int arrowX, int arrowY);
+
+
+
 int main() {
 
-    //################console fullscreen and renamed#######################################
+    int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+    int arrowX = screenWidth / 2; 
+    int arrowY = screenHeight / 2;
 
-    
+    POINT cursorPos;
+    ArrowDirection direction_buff = RIGHT;
+    //################console fullscreen and renamed#######################################
     
     SetCursorVisibility(false);
     SetConsoleTitle(TEXT("simple game"));//rename window
@@ -60,12 +79,16 @@ int main() {
     //###################################game loop######################################
     //##################################################################################
     while (true) {
+
         #pragma warning(disable : 28020)
         char up    =   game[plx][ply - 1];
         char down  =   game[plx][ply + 1];
         char left  =   game[plx - 1][ply];
         char right =   game[plx + 1][ply];
         #pragma warning(default : 28020)
+
+        
+
 
         if ((GetAsyncKeyState('W') & 0x8000) && (up != '^')) {
             game[plx][ply] = pastchar;
@@ -88,30 +111,39 @@ int main() {
             pressed = true;
         }
         //###
-        if (GetAsyncKeyState('I') & 0x8000) {
-            pla = '^';
-            xlook = 0;
-            ylook = -1;
+
+
+        
+        GetCursorPos(&cursorPos);
+
+        ArrowDirection direction = calculateArrowDirection(cursorPos.x, cursorPos.y, arrowX, arrowY);
+        if (direction_buff != direction) {
+            switch (direction) {
+            case UP:
+                xlook = 0;
+                ylook = -1;
+                pla = '^';
+                break;
+            case DOWN:
+                xlook = 0;
+                ylook = 1;
+                pla = 'v';
+                break;
+            case LEFT:
+                xlook = -1;
+                ylook = 0;
+                pla = '<';
+                break;
+            case RIGHT:
+                xlook = 1;
+                ylook = 0;
+                pla = '>';
+                break;
+            }
             pressed = true;
         }
-        if (GetAsyncKeyState('K') & 0x8000) {
-            pla = 'v';
-            xlook = 0;
-            ylook = 1;
-            pressed = true;
-        }
-        if (GetAsyncKeyState('J') & 0x8000) {
-            pla = '<';
-            xlook = -1;
-            ylook = 0;
-            pressed = true;
-        }
-        if (GetAsyncKeyState('L') & 0x8000) {
-            pla = '>';
-            xlook = 1;
-            ylook = 0;
-            pressed = true;
-        }
+        direction_buff = direction;
+
         //###
         if (GetAsyncKeyState('E') & 0x8000) {
             game[plx + xlook][ply + ylook] = '#';
@@ -149,4 +181,15 @@ int main() {
 }
 
 
+ArrowDirection calculateArrowDirection(int mouseX, int mouseY, int arrowX, int arrowY) {
+    double angle = atan2(mouseY - arrowY, mouseX - arrowX) * 180 / PI;
 
+    if (angle >= -45 && angle < 45)
+        return RIGHT;
+    else if (angle >= 45 && angle < 135)
+        return DOWN;
+    else if (angle >= -135 && angle < -45)
+        return UP;
+    else
+        return LEFT;
+}
