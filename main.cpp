@@ -38,6 +38,10 @@ int main() {
     //##################################################################################
     
 
+    //####pointing#############
+    int xlook = 1;
+    int ylook = 0;
+
 
     //###############################create map#########################################
     //##################################################################################
@@ -86,21 +90,34 @@ int main() {
         //###
         if (GetAsyncKeyState('I') & 0x8000) {
             pla = '^';
+            xlook = 0;
+            ylook = -1;
             pressed = true;
         }
         if (GetAsyncKeyState('K') & 0x8000) {
             pla = 'v';
+            xlook = 0;
+            ylook = 1;
             pressed = true;
         }
         if (GetAsyncKeyState('J') & 0x8000) {
             pla = '<';
+            xlook = -1;
+            ylook = 0;
             pressed = true;
         }
         if (GetAsyncKeyState('L') & 0x8000) {
             pla = '>';
+            xlook = 1;
+            ylook = 0;
             pressed = true;
         }
         //###
+        if (GetAsyncKeyState('E') & 0x8000) {
+            game[plx + xlook][ply + ylook] = '#';
+            pressed = true;
+        }
+        //########
         if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
             exit(0);
             break; 
