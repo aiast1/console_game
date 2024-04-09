@@ -5,7 +5,6 @@ using namespace std;
 enum OPTIONS { START_GAME, CONTROLS, QUIT_GAME };
 
 
-
 void SetCursorPosition_ui(int x, int y) {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD position;

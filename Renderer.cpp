@@ -5,8 +5,8 @@
 #undef min
  
 
-const int VIEWPORT_WIDTH = 30;
-const int VIEWPORT_HEIGHT = 18;
+const int VIEWPORT_WIDTH = 35;
+const int VIEWPORT_HEIGHT = 16;
 
 void SetCursorPosition(int x, int y) {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);

@@ -4,7 +4,6 @@
 
 const double PI = 3.14159265;
 
-
 enum ArrowDirection {
     UP,
     DOWN,
