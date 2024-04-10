@@ -88,7 +88,6 @@ int main() {
 
         
 
-
         if ((GetAsyncKeyState('W') & 0x8000) && (up != '^')) {
             game[plx][ply] = pastchar;
             ply = max(ply - 1, 1);
@@ -139,6 +138,7 @@ int main() {
                 pla = '>';
                 break;
             }
+            game[plx][ply] = pastchar;
             pressed = true;
         }
         direction_buff = direction;
@@ -146,7 +146,9 @@ int main() {
         //###
         if (GetAsyncKeyState('E') & 0x8000) {
             game[plx + xlook][ply + ylook] = '#';
+            game[plx][ply] = pastchar;
             pressed = true;
+            
         }
         //########
         if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
@@ -154,6 +156,7 @@ int main() {
             break; 
         }
         if (pressed) {
+            pastchar = game[plx][ply];
             game[plx][ply] = pla;
             render(game, plx, ply, pla);
             footstep();
